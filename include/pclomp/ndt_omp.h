@@ -168,6 +168,16 @@ namespace pclomp
 			step_size_ = step_size;
 		}
 
+		/** \brief Enable/disable the More-Thuente line search (enabled by default).
+		  * Disabled, each step is the Newton step clipped to [transformation_epsilon / 2, step_size].
+		  * \param[in] use_line_search whether to search the step length
+		  */
+		inline void
+			setUseLineSearch(bool use_line_search)
+		{
+			use_line_search_ = use_line_search;
+		}
+
 		/** \brief Get the point cloud outlier ratio.
 		  * \return outlier ratio
 		  */
@@ -456,6 +466,9 @@ namespace pclomp
 
 		/** \brief The maximum step length. */
 		double step_size_;
+
+		/** \brief Whether computeStepLengthMT searches the step length. */
+		bool use_line_search_;
 
 		/** \brief The ratio of outliers of points w.r.t. a normal distribution, Equation 6.7 [Magnusson 2009]. */
 		double outlier_ratio_;
